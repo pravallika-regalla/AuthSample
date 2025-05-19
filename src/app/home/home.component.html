@@ -1,9 +1,61 @@
-<div>
-  <button *ngIf="(auth.isAuthenticated$ | async) === false"
-          (click)="login()" id="login">Login</button>
-  <div *ngIf="auth.user$ | async as user">
-    <h2>Welcome, {{user?.name}}!</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Page</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      background: linear-gradient(135deg, #e0f7fa, #80deea);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .card {
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      background: #ffffff;
+    }
+    .btn {
+      font-size: 1.1rem;
+    }
+    h2 {
+      font-weight: 600;
+      color: #0077b6;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card text-center" style="width: 100%; max-width: 400px;">
+    <h2 class="mb-4">Welcome to Our App</h2>
+
+    <!-- Login Button -->
+    <button *ngIf="(auth.isAuthenticated$ | async) === false"
+            (click)="login()"
+            id="login"
+            class="btn btn-primary btn-lg w-100 mb-3">
+      Login
+    </button>
+
+    <!-- User Greeting -->
+    <div *ngIf="auth.user$ | async as user" class="alert alert-success mb-3">
+      👋 Hello, {{ user?.name }}!
+    </div>
+
+    <!-- Logout Button -->
+    <button *ngIf="auth.isAuthenticated$ | async"
+            (click)="logout()"
+            id="logout"
+            class="btn btn-danger btn-lg w-100">
+      Logout
+    </button>
   </div>
-  <button *ngIf="auth.isAuthenticated$ | async"
-          (click)="logout()" id="logout">Logout</button>
-</div>
+
+</body>
+</html>
