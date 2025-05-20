@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting...</title>
+  <script type="text/javascript">
+    const path = location.pathname.replace('/AuthSample', '');
+    const search = location.search || '';
+    const hash = location.hash || '';
+    const target = '/AuthSample/index.html' + path + search + hash;
+    window.location.replace(target);
+  </script>
+</head>
+<body>
+  Redirecting...
+</body>
+</html>
