@@ -3,15 +3,13 @@ import { AuthService } from '@auth0/auth0-angular';
 import { DOCUMENT } from '@angular/common';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html'
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html'
 })
-export class HomeComponent {
+export class DashboardComponent {
   constructor(public auth: AuthService, @Inject(DOCUMENT) private doc: Document) {}
 
-  login(): void {
-    this.auth.loginWithRedirect({
-      appState: { target: '/dashboard' }
-    });
+  logout(): void {
+    this.auth.logout({ returnTo: this.doc.location.origin + '/AuthSample/' });
   }
 }

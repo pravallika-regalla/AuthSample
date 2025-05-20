@@ -1,0 +1,8 @@
+<div class="container text-center mt-5">
+  <h2 class="text-success">🎉 Welcome to the Dashboard!</h2>
+
+  <ng-container *ngIf="auth.user$ | async as user">
+    <p>Hello, {{ user.name }}</p>
+    <button (click)="logout()" class="btn btn-danger mt-3">Logout</button>
+  </ng-container>
+</div>
