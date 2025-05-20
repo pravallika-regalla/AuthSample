@@ -3,15 +3,18 @@
 <head>
   <meta charset="utf-8">
   <title>Redirecting...</title>
-  <script>
+  <script type="text/javascript">
     (function () {
       const prefix = '/AuthSample';
-      let path = location.pathname.replace(new RegExp(`${prefix}/index.html`, 'g'), '');
-      path = path.replace(prefix, '');
-      const search = location.search || '';
-      const hash = location.hash || '';
-      const redirectTo = `${prefix}/index.html${path}${search}${hash}`;
-      window.location.replace(redirectTo);
+      const currentPath = location.pathname + location.search + location.hash;
+
+      // Redirect only if we're not already at index.html
+      if (!location.pathname.includes('/index.html')) {
+        const target = `${prefix}/index.html${location.search}${location.hash}`;
+        window.location.replace(target);
+      } else {
+        document.body.innerHTML = '<p>Unable to redirect: Please check route setup in Angular</p>';
+      }
     })();
   </script>
 </head>
