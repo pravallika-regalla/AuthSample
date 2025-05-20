@@ -30,7 +30,8 @@ const routes: Routes = [
     CommonModule,
     HttpClientModule,
     AuthModule.forRoot(config),
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, { useHash: true })
+
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true }
