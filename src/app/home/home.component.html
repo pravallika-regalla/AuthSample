@@ -2,25 +2,28 @@
   <div class="card text-center p-4 shadow-lg" style="width: 100%; max-width: 400px; border-radius: 20px;">
     <h2 class="mb-4 text-primary">Welcome to Our App</h2>
 
-    <!-- Login Button -->
-    <button *ngIf="(auth.isAuthenticated$ | async) === false"
-            (click)="login()"
-            id="login"
-            class="btn btn-primary btn-lg w-100 mb-3">
-      Login
-    </button>
-
-    <!-- User Greeting -->
-    <div *ngIf="auth.user$ | async as user" class="alert alert-success mb-3">
-      👋 Hello, {{ user?.name }}!
+    <!-- Loading indicator -->
+    <div *ngIf="auth.isLoading$ | async" class="text-muted mb-3">
+      Loading authentication...
     </div>
 
-    <!-- Logout Button -->
-    <button *ngIf="auth.isAuthenticated$ | async"
-            (click)="logout()"
-            id="logout"
-            class="btn btn-danger btn-lg w-100">
-      Logout
-    </button>
+    <!-- Authenticated and user loaded -->
+    <ng-container *ngIf="(auth.isAuthenticated$ | async)">
+      <ng-container *ngIf="auth.user$ | async as user">
+        <div class="alert alert-success mb-3">
+          👋 Hello, {{ user.name }}!
+        </div>
+        <button (click)="logout()" id="logout" class="btn btn-danger btn-lg w-100">
+          Logout
+        </button>
+      </ng-container>
+    </ng-container>
+
+    <!-- Not authenticated -->
+    <ng-container *ngIf="!(auth.isAuthenticated$ | async) && !(auth.isLoading$ | async)">
+      <button (click)="login()" id="login" class="btn btn-primary btn-lg w-100 mb-3">
+        Login
+      </button>
+    </ng-container>
   </div>
 </div>
