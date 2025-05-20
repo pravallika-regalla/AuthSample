@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting...</title>
+  <script>
+    (function () {
+      const prefix = '/AuthSample';
+      let path = location.pathname.replace(new RegExp(`${prefix}/index.html`, 'g'), '');
+      path = path.replace(prefix, '');
+      const search = location.search || '';
+      const hash = location.hash || '';
+      const redirectTo = `${prefix}/index.html${path}${search}${hash}`;
+      window.location.replace(redirectTo);
+    })();
+  </script>
+</head>
+<body>
+  Redirecting...
+</body>
+</html>
